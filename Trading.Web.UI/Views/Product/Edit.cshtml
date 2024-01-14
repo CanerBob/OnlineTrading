@@ -1,0 +1,44 @@
+﻿@model Product
+@{
+	Layout = "_Layout";
+}
+<div class="col-md-3">
+	@section Categories
+ {
+		@await Component.InvokeAsync("Categories")
+	}
+</div>
+<div class="col-md-9">
+	<h6>ÜRÜN DÜZENLEME SAYFASI</h6>
+	<hr />
+	<form method="post">
+		<input type="hidden" name="ProducyId" value="@Model.Id"/>
+		<div class="form-group">
+			<label for="Name">Ürün Adı</label>
+			<input asp-for="Name" value="@Model.Name" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label for="Price">Ürün Fiyatı</label>
+			<input asp-for="Price" value="@Model.Price" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label for="Description">Ürün Açıklaması</label>
+			<textarea asp-for="Description" value="@Model.Description" class="form-control"></textarea>
+		</div>
+		<div class="form-group">
+			<label for="ImageUrl">Ürün ImageUrl</label>
+			<input asp-for="ImageUrl" value="@Model.ImageUrl" class="form-control" />
+		</div>
+		<div class="form-group">
+			<label for="CategoryId">Ürün Kategorisi</label>
+
+			@* <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control">
+				<option selected disabled>Kategori Seçiniz</option>
+
+			</select> *@
+		</div>
+		<button type="submit" class="btn btn-primary">Ürün Kaydet</button>
+	</form>
+</div>
+
+

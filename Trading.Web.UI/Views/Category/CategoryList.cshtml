@@ -1,0 +1,45 @@
+﻿@model CategoryListViewModel
+@{
+	int count = 0;
+}
+<div class="row">
+	<div class="col-md-11">
+		<h1>Kategori İşlemleri</h1>
+		<hr />
+		<a asp-controller="Category" asp-action="CreateCategory" class="btn btn-info">KATEGORİ EKLE</a>
+		<hr />
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<td style="width:30px;">Id</td>
+					<td>Kategori İsmi</td>
+					<td style="width:150px;"></td>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.Categories.Count > 0)
+				{
+					@foreach (var item in Model.Categories)
+					{
+						count++;
+						<tr>
+							<td>@count</td>
+							<td>@item.Name</td>
+							<td>
+								<a asp-controller="Category" asp-action="EditCategory" asp-route-id="@item.Id" class="btn btn-primary btn-sm mr-2">Düzenle</a>
+								<form asp-controller="Category" asp-action="DeleteCategory" method="post" style="display:inline;">
+									<input type="hidden" name="Id" value="@item.Id" />
+									<button type="submit" class="btn btn-danger btn-sm">Sil</button>
+								</form>
+							</td>
+						</tr>
+					}
+				}
+				else
+				{
+					<div class="alert alert-warning"><h3>Kateogori Yok</h3></div>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

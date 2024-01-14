@@ -1,0 +1,88 @@
+﻿@model BasketModel
+
+<h1 class="h3">Alışveriş Sepetiniz</h1>
+<hr />
+@if (Model.BasketItems.Count == 0)
+{
+	<div class="row">
+		<div class="col 12">
+			<div class="alert alert-warning">
+				Sepetinizde Ürün Yok
+			</div>
+		</div>
+	</div>
+}
+else
+{
+	<div class="row">
+		<div class="col-md-7">
+			<div class="text-left">
+				<h4>Sepetteki Ürünleriniz</h4>
+			</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Ürün Resmi</th>
+						<th>Ürün Adı</th>
+						<th>Fiyat</th>
+						<th>Adet</th>
+						<th>Toplam Fiyat</th>
+						<th>Sil</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model.BasketItems)
+					{
+						<tr>
+							<td>
+								<img src="~/img/@item.ImageUrl" width="80px" />
+							</td>
+							<td>@item.ProductName</td>
+							<td>@item.Price</td>
+							<td>@item.Quantity</td>
+							<td>@(item.Quantity * item.Price)</td>
+							<td>
+								<form asp-controller="Basket" asp-action="DeleteFromBasket" method="post">
+									<input type="hidden" name="productId" value="@item.ProductId" />
+									<button type="submit" class="btn btn-danger btn-sm">
+										<i class="fa fa-times fa-fw"></i>
+									</button>
+								</form>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-5">
+			<div class="text-left">
+				<h4>Sepet Özetiniz</h4>
+			</div>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Sepet Toplamı:</th>
+						<td>@Model.TotalPrice().ToString("c")</td>
+					</tr>
+					<tr>
+						<th>Kargo:</th>
+						<td>Kargo Bedava</td>
+					</tr>
+					<tr>
+						<th>Sipariş Toplamı:</th>
+						<th>@Model.TotalPrice().ToString("c")</th>
+					</tr>
+				</tbody>
+			</table>
+			<div class="text-center">
+				<a href="/Home/Index/" class="btn btn-primary">
+					<i class="fa fa-arrow-circle-left fa-fw"></i>Alışverişe Devam Et
+				</a>
+				<a href="#" class="btn btn-primary">
+					<i class="fa fa-arrow-circle-right fa-fw"></i>Alışverişi Tamamla
+				</a>
+			</div>
+		</div>
+
+	</div>
+}

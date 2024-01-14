@@ -1,0 +1,49 @@
+﻿@model Product
+@{
+	Layout = "_Layout";
+}
+<div class="col-md-3">
+	@section Categories
+ {
+		@await Component.InvokeAsync("Categories")
+	}
+</div>
+<div class="col-md-9">
+	<h6>ÜRÜN EKLEME SAYFASI</h6>
+	<hr />
+	<form method="post">
+		<div asp-validation-summary="All" class="text-danger"></div>
+		<div class="form-group">
+			<label for="Name">Ürün Adı</label>
+			<input asp-for="Name" value="@Model.Name" class="form-control" />
+			<br/>
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label for="Price">Ürün Fiyatı</label>
+			<input asp-for="Price" value="@Model.Price" class="form-control" />
+			<span asp-validation-for="Price" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label for="Description">Ürün Açıklaması</label>
+			<textarea asp-for="Description" value="@Model.Description" class="form-control"></textarea>
+			<span asp-validation-for="Description" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label for="ImageUrl">Ürün ImageUrl</label>
+			<input asp-for="ImageUrl" value="@Model.ImageUrl" class="form-control" />
+			<span asp-validation-for="ImageUrl" class="text-danger"></span>
+		</div>
+		<div class="form-group">
+			<label for="CategoryId">Ürün Kategorisi</label>
+			
+			@* <select asp-for="CategoryId" asp-items="@ViewBag.Categories" value="@Model.CategoryId" class="form-control">
+				<option selected disabled>Kategori Seçiniz</option>
+				<span asp-validation-for="CategoryId" class="text-danger"></span>
+			</select> *@
+		</div>
+		<button type="submit" class="btn btn-primary">Ürün Kaydet</button>
+	</form>
+</div>
+
+

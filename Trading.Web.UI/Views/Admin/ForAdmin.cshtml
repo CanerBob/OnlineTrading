@@ -1,0 +1,26 @@
+﻿
+
+<div class="row">
+	<div class="col-md-3">
+		@await Component.InvokeAsync("Categories")
+		@await Html.PartialAsync("_search")
+	</div>
+	<div class="col-md-9">
+		<div class="row">
+			<a href="/admin/products" class="btn btn-info">ÜRÜN İŞLEMLERİ</a>
+		</div>
+
+		<br />
+		<div class="row">
+			<a asp-controller="Category" asp-action="CategoryList" class="btn btn-info">KATEGORİ İŞLEMLERİ</a>
+		</div>
+		<br />
+		<div class="row">
+			<a asp-controller="Role" asp-action="RoleList" class="btn btn-info">ROL İŞLEMLERİ</a>
+		</div>
+		<br/>
+		<div class="row">
+			<a asp-controller="Role" asp-action="UserList" class="btn btn-info">TÜM KULLANICILAR</a>
+		</div>
+	</div>
+</div>

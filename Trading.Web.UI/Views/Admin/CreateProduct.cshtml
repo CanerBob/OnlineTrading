@@ -1,0 +1,58 @@
+﻿@model CreateProductViewModel
+
+<h1 class="h3">Ürün Ekleme Sayfası</h1>
+<hr />
+<div class="row">
+	<div class="col-md-8">
+		<form asp-controller="Admin" asp-action="CreateProduct" method="post">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<div class="form-group row">
+				<label asp-for="Name" class="col-sm-2 col-form-label">Ürün Adı </label>
+				<div class="col-sm-10">
+					<input class="form-control" asp-for="Name" placeholder="Ürün Adı Giriniz">
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label asp-for="Description" class="col-sm-2 col-form-label">Ürün Açıklaması </label>
+				<div class="col-sm-10">
+					<textarea class="form-control" asp-for="Description" placeholder="Ürün Açıklaması Giriniz"></textarea>
+					<span asp-validation-for="Description" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label asp-for="Url" class="col-sm-2 col-form-label">Ürün Url </label>
+				<div class="col-sm-10">
+					<input class="form-control" asp-for="Url" placeholder="Ürün Url Giriniz">
+					<span asp-validation-for="Url" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label asp-for="ImageUrl" class="col-sm-2 col-form-label">Ürün Resmi </label>
+				<div class="col-sm-10">
+					<input class="form-control" asp-for="ImageUrl" placeholder="Ürün Resmi Seçiniz">
+					<span asp-validation-for="ImageUrl" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label asp-for="Price" class="col-sm-2 col-form-label">Ürün Fiyatı </label>
+				<div class="col-sm-10">
+					<input class="form-control" asp-for="Price" placeholder="Ürün Fiyat Giriniz">
+					<span asp-validation-for="Price" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-10 offset-sm-2">
+					<button type="submit" class="btn btn-info">Ürünü Kaydet</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+@section Scripts
+{
+	
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+}

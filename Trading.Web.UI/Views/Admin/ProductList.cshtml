@@ -1,0 +1,72 @@
+﻿@model ProductListViewModel
+@{
+	int count = 0;
+}
+
+<div class="row">
+	<div class="col-md-11">
+		<h1>Ürün İşlemleri</h1>
+		<hr/>
+		<a asp-controller="Admin" asp-action="CreateProduct" class="btn btn-info">ÜRÜN EKLE</a>
+		<hr/>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<td style="width:30px;">Id</td>
+					<td style="width:100px;">Ürün Resmi</td>
+					<td style="width:50px;">Ürün İsmi</td>
+					<td style="width:20px;">Ürün Fiyatı</td>
+					<td style="width:20px;">Ana Sayfa</td>
+					<td style="width:20px;">Onaylı</td>
+					<td style ="width:150px;"></td>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.Products.Count>0)
+				{
+					@foreach (var item in Model.Products)
+					{
+						count++;
+						<tr>
+							<td>@count</td>
+							<td><img src="~/img/@item.ImageUrl" width="80" /></td>
+							<td>@item.Name</td>
+							<td>@item.Price</td>
+							<td>
+								@if (item.IsHome)
+								{
+									<i class="fas fa-check-circle"></i>
+								}
+								else
+								{
+									<i class="fas fa-times-circle"></i>
+								}
+							</td>
+							<td>
+								@if (item.IsApproved)
+								{
+									<i class="fas fa-check-circle"></i>
+								}
+								else
+								{
+									<i class="fas fa-times-circle"></i>
+								}
+							</td>
+							<td>
+								<a asp-controller="Admin" asp-action="EditProduct" asp-route-id="@item.Id" class="btn btn-primary btn-sm mr-2">Düzenle</a>
+								<form action="/admin/deleteproduct" method="post" style="display:inline;">
+									<input type="hidden" name="Id" value="@item.Id"/>
+								<button type="submit" class="btn btn-danger btn-sm">Sil</button>
+								</form>
+							</td>
+						</tr>
+					}
+				}
+				else
+				{
+					<div class="alert alert-warning"><h3>Ürün Yok</h3></div>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

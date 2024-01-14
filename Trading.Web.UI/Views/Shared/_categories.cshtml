@@ -1,0 +1,7 @@
+﻿@model List<Category>
+<div class="list-group">
+    @foreach (var categories in Model)
+    {
+        <a href="#" class="list-group-item list-group-item-action">@categories.Name</a>
+    }
+</div>
